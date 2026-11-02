@@ -14,6 +14,7 @@ description: Write the "Manuální test" section of a ticket note - the UI/UX ch
    If none works, tell the dev and stop.
 2. Read the repo's `project.md`. If it is missing, ask the dev whether to create it from `<toolchain>/templates/project.md`: prefill what the repo shows (main branch, build commands, work folder candidates), ask for the rest, write it only after the dev agrees, then continue. Never invent values.
 3. Read `<toolchain>/Task.md`; its rules win over this skill.
+4. `work_dir` in `project.md` is the home of the issue XML and notes. If it is missing or the folder does not exist, run `/task-init` first (`task-status`: just report it).
 
 Follow `Task.md` ("Manual UI/UX testing"). UI behaviour is never claimed as verified; it is handed to the dev.
 

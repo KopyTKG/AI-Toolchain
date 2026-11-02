@@ -16,7 +16,7 @@ Template for handling Jira tickets with Claude Code: parse the XML export, estim
 | `scripts/notes_check.py` | Checks and fixes the character counts of store-text blocks |
 | `scripts/install-global.sh` | Links the skills into `~/.claude/skills` (global install) |
 | `scripts/state.py` | List, get or set the `state` of notes |
-| `skills/task-*` | Claude Code skills for each step: `task-intake`, `task-start`, `task-commit`, `task-manual-test`, `task-status` |
+| `skills/task-*` | Claude Code skills for each step: `task-init`, `task-intake`, `task-start`, `task-commit`, `task-manual-test`, `task-status` |
 
 ## Install
 
@@ -51,8 +51,8 @@ Skills load in a new session (or check with `/skills`). Copying only `skills/` i
 
 ## Using it on a ticket
 
-1. In the repo: fill in `project.md` (`work_dir` stays untracked: `.gitignore` or `.git/info/exclude`).
-2. Put the Jira XML into `work_dir`.
+1. In the repo: `/task-init PATH` (or `--here`) marks the work folder, the home of the issue XML and notes. It writes `work_dir` in `project.md` and makes git ignore the folder (`.git/info/exclude` or `.gitignore`). Fill in the rest of `project.md`.
+2. Put the Jira XML into that folder.
 3. `/task-intake KEY` (parses the XML, estimates, plans, stops for your approval) → `/task-start KEY` → code → `/task-manual-test KEY` → `/task-commit` (`--rc` for a patch, `--bump` for a release, only if the repo opted in). `/task-status` shows the overview.
 4. Without the skills: `python3 <toolchain>/scripts/xml2note.py work/PROJ-123.xml`.
 

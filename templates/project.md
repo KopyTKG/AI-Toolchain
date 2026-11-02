@@ -3,7 +3,8 @@
 Copy this file to the project repo root (or next to its CLAUDE.md) and fill it in. `Task.md` refers to it.
 
 ```yaml
-toolchain_dir: ai-toolchain     # folder of this toolchain inside the repo; skills use it to find Task.md and scripts
+toolchain_dir: ai-toolchain     # relative to repo root, absolute, or ~/...; skills use it to find Task.md and scripts
+                               # global install: ~/AI-Toolchain (or leave it out and set env AI_TOOLCHAIN_DIR)
 project: SLOUP                 # Jira project key
 work_dir: source/work          # where the Jira XML and the notes live (stays untracked)
 main_branch: master

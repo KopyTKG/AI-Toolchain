@@ -7,10 +7,15 @@ description: Show where every ticket stands - state, estimate, branch, open manu
 
 ## First
 
-1. Read `project.md` of the repo. `toolchain_dir` there is the folder this toolchain lives in; every `<toolchain>` below means it. If `project.md` or `toolchain_dir` is missing, tell the dev and stop.
-2. Read `<toolchain>/Task.md`; its rules win over this skill.
+1. Find the toolchain folder; every `<toolchain>` below means it. Try in order and take the first that contains `Task.md`:
+   - `toolchain_dir` in the repo's `project.md` (relative to the repo root, absolute, or `~/...`)
+   - the env var `AI_TOOLCHAIN_DIR`
+   - the folder this skill was loaded from, with symlinks resolved (`readlink -f`), two levels up (works for a global install)
+   If none works, tell the dev and stop.
+2. Read the repo's `project.md`. If it is missing, ask the dev whether to create it from `<toolchain>/templates/project.md`: prefill what the repo shows (main branch, build commands, work folder candidates), ask for the rest, write it only after the dev agrees, then continue. Never invent values.
+3. Read `<toolchain>/Task.md`; its rules win over this skill.
 
-Read-only. Changes nothing.
+Read-only. Changes nothing. If `project.md` is missing, say so and stop; do not create it here (use another task skill for that).
 
 ## Steps
 1. `python3 <toolchain>/scripts/state.py list {work_dir}` for key, state, estimate and title.

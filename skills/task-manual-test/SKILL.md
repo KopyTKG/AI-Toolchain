@@ -7,8 +7,13 @@ description: Write the "Manuální test" section of a ticket note - the UI/UX ch
 
 ## First
 
-1. Read `project.md` of the repo. `toolchain_dir` there is the folder this toolchain lives in; every `<toolchain>` below means it. If `project.md` or `toolchain_dir` is missing, tell the dev and stop.
-2. Read `<toolchain>/Task.md`; its rules win over this skill.
+1. Find the toolchain folder; every `<toolchain>` below means it. Try in order and take the first that contains `Task.md`:
+   - `toolchain_dir` in the repo's `project.md` (relative to the repo root, absolute, or `~/...`)
+   - the env var `AI_TOOLCHAIN_DIR`
+   - the folder this skill was loaded from, with symlinks resolved (`readlink -f`), two levels up (works for a global install)
+   If none works, tell the dev and stop.
+2. Read the repo's `project.md`. If it is missing, ask the dev whether to create it from `<toolchain>/templates/project.md`: prefill what the repo shows (main branch, build commands, work folder candidates), ask for the rest, write it only after the dev agrees, then continue. Never invent values.
+3. Read `<toolchain>/Task.md`; its rules win over this skill.
 
 Follow `Task.md` ("Manual UI/UX testing"). UI behaviour is never claimed as verified; it is handed to the dev.
 
